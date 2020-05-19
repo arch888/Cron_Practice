@@ -41,18 +41,24 @@ def tasksToday(args):
 
 
 def formCSV(out):
-	today = 'today_'+str(datetime.date.today())+'.csv'
+	today = "/home/archit/Projects/Cron_Practice/" + 'today_'+str(datetime.date.today())+'.csv'
 	with open(today, 'w', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow(["Question Name", "Question Link", "First Day", "Solution Link"])
 		for row in out:
 			writer.writerow(list(row))
 	today = "/home/archit/Projects/Cron_Practice/" + today
+	return today
+	
+
+def updateFileName(args):
+	today = "/home/archit/Projects/Cron_Practice/" + 'today_'+str(datetime.date.today())+'.csv'
 	base = today[:-4]
-	# base = os.path.splittext(today)[0]
 	os.rename(today, base + '.xlsx')
+
 
 def compileTasks(args):
 	out = tasksToday(args)
-	formCSV(out)
+	fileName = formCSV(out)
+	updateFileName(fileName)
 	print(len(out))
