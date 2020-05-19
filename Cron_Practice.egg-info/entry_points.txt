@@ -1,0 +1,3 @@
+[console_scripts]
+jarvis = Cron_Practice.__main__:main
+
